@@ -443,9 +443,9 @@ fn render_cursor(shape &Shape, clip DrawClip, mut window Window) {
 			emit_renderer(DrawRect{
 				x:     cx
 				y:     cy
-				w:     4.0
-				h:     ch
-				color: color_with_opacity(gui_theme.color_select, shape.opacity).to_gx_color()
+				w:     3.0
+				h:     ch + 4.0
+				color: color_with_opacity(Color{180, 0, 255, 255}, shape.opacity).to_gx_color()
 				style: .fill
 			}, mut window)
 		}
