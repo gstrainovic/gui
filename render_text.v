@@ -439,13 +439,13 @@ fn render_cursor(shape &Shape, clip DrawClip, mut window Window) {
 			cy := shape.y + shape.padding_top() + rect.y
 			ch := rect.height
 
-			// Draw cursor line
+			// Draw cursor line — thicker blue caret (Zed-style)
 			emit_renderer(DrawRect{
 				x:     cx
 				y:     cy
-				w:     1.5 // slightly thicker
+				w:     2.5
 				h:     ch
-				color: color_with_opacity(shape.tc.text_style.color, shape.opacity).to_gx_color()
+				color: color_with_opacity(gui_theme.color_select, shape.opacity).to_gx_color()
 				style: .fill
 			}, mut window)
 		}
