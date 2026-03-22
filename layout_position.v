@@ -8,9 +8,11 @@ module gui
 
 // layout_adjust_scroll_offsets ensures scroll offsets are in range.
 // Scroll offsets can go out of range during window resizing.
+// Skip containers with zero dimensions — these are pre-amend placeholders
+// (e.g. splitter panes before splitter_amend_layout sets real sizes).
 fn layout_adjust_scroll_offsets(mut layout Layout, mut w Window) {
 	id_scroll := layout.shape.id_scroll
-	if id_scroll > 0 {
+	if id_scroll > 0 && layout.shape.width > 0 && layout.shape.height > 0 {
 		mut sx := state_map[u32, f32](mut w, ns_scroll_x, cap_scroll)
 		mut sy := state_map[u32, f32](mut w, ns_scroll_y, cap_scroll)
 		max_offset_x := f32_min(0, layout.shape.width - layout.shape.padding_width() - content_width(layout))
